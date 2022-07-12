@@ -6,5 +6,16 @@ services:
       - '4000:3000'
     environment:
       - PORT=3000
-    # env_file:
-    #   - ./.env # same as environment
+    depends_on:
+      - mongo # mongoを先にupさせる
+
+  mongo:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=yuki
+      - MONGO_INITDB_ROOT_PASSWORD=mypassword
+    volumes:
+      - mongo-db:/data/db
+
+volumes:
+  mongo-db:

@@ -5,6 +5,8 @@ WORKDIR /app
 # want to copy package.json to /app/package.json
 COPY package.json .
 RUN npm install
+# nodemonが使えないバグがあったので退避のためglobal install
+RUN npm install --global nodemon
 
 # 変数
 ARG NODE_ENV
